@@ -16,6 +16,7 @@ export
    VersionFromInts
    IsVersion
    VersionCompare
+   AuthorOK
 import
    Open Compiler OS URL
    Path at 'Path.ozf'
@@ -331,6 +332,13 @@ define
 
    fun {MogulToPackagename MOG}
       {Append {MogulToFilename MOG} ".pkg"}
+   end
+
+   fun {AuthorOK S}
+      {IsMogulID S} orelse
+      local L={VS2S S} in
+         {Not {Member &: L} orelse {Member &/ L}}
+      end
    end
 
 end
