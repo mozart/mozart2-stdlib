@@ -38,7 +38,6 @@ import
             builder:            Builder
             qTkClass:           QTkClass
             qTkAction:          QTkAction
-            vS2Tk:              VS2Tk
             globalInitType:     GlobalInitType
             globalUnsetType:    GlobalUnsetType
             globalUngetType:    GlobalUngetType)

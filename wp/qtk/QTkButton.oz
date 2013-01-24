@@ -44,7 +44,8 @@ export
 
 define
 
-   IsDarwin=({OS.uName}.sysname=="Darwin")
+   %IsDarwin=({OS.uName}.sysname=="Darwin")
+   IsDarwin = OS.fopen == OS.fclose % of course always false
    DPadx#DPady=if IsDarwin then 10#1 else 0#0 end
    class QTkButton
 

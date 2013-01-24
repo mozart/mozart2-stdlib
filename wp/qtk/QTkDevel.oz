@@ -28,7 +28,6 @@
 functor
 
 import
-   System(show:Show)
    Tk
    Error
    QTk at 'QTkBare.ozf'

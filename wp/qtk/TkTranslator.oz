@@ -5,8 +5,6 @@ export
    i2u:I2U
    i2t:I2T
 
-require Compiler
-
 prepare
 
 
@@ -35,22 +33,6 @@ prepare
       end
    end
 
-   proc{Loop Data}
-      S R2
-      {List.takeDropWhile Data fun{$ C} C>=32 end S R2}
-   in
-      if S\="" then
-         L R {List.takeDropWhile S fun{$ C} C\=&: end L R}
-         C={Compiler.evalExpression L nil _}
-         V={Compiler.evalExpression R.2 nil _}
-      in
-         {Put PatternDict V C}
-         {Dictionary.put InvDict C V}
-         {Loop {List.dropWhile R2 fun{$ C} C<32 end}
-}
-      end
-   end
-
    fun{ToRecord D}
       if {Dictionary.is D} then
          {Record.map
@@ -60,7 +42,12 @@ prepare
          D
       end
    end
-   {Loop Data}
+
+   {Record.forAllInd Data
+      proc {$ C V}
+         {Put PatternDict V C}
+         {Dictionary.put InvDict C V}
+      end}
 
    DU2I={ToRecord PatternDict}
    DI2U={Dictionary.toRecord c InvDict}
