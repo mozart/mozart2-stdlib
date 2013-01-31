@@ -1,3 +1,10 @@
+# Some OS-dependent configuration
+if(WIN32)
+  set(PATHSEP ";")
+else()
+  set(PATHSEP ":")
+endif()
+
 set(QTK_FUNCTORS_1
     "${CMAKE_CURRENT_SOURCE_DIR}/QTkImageLibBoot.oz")
 
@@ -55,7 +62,8 @@ foreach(STAGE 1 2 3)
     add_custom_command(
       OUTPUT "${FUNCTOR_OZF}"
       COMMAND ozemulator
-        --search-load "all=${CMAKE_CURRENT_BINARY_DIR}:cache=${MOZART_BUILD_DIR}/lib/cache"
+        --home "${MOZART_BUILD_DIR}"
+        --search-load "all=${CMAKE_CURRENT_BINARY_DIR}${PATHSEP}cache=${MOZART_BUILD_DIR}/lib/cache"
         x-oz://system/Compile.ozf
         -c "${FUNCTOR}"
         -o "${FUNCTOR_OZF}"
