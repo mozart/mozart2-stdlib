@@ -139,7 +139,7 @@ define
             if Lb==M then
                {ExecTk Parent b([Lb self.This])}
             else
-               {ExecTk Parent b([Lb self.This d(M)])}
+               {ExecTk Parent b([Lb self.This {Record.adjoin M o}])}
             end
          end
          meth TReturnTk(M Type)
